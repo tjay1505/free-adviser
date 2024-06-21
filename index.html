@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test-132</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./images/favicon-32x32.png" type="image/x-icon">
+  <link rel="stylesheet" href="./sass/index.css">
+</head>
+<body>
+    <div class="cont" id="cont" >
+      <p>advice #117</p>
+      <h1 id="Uplo" >"Don't Apologize, if you are ready to do the same Mistake again"</h1>
+      <img src="./images/pattern-divider-mobile.svg" alt="">
+      <img src="./images/icon-dice.svg" id="bl" onclick="getNew()" alt="">
+    </div>
+    
+    <div id="loader">
+      <div class="dot one"></div>
+      <div class="dot two"></div>
+      <div class="dot three"></div>
+    </div>
+
+    <script>
+      const ApiUrl = 	"https://api.adviceslip.com/advice"
+      const cont = document.getElementById('cont')
+      const upLoad = document.getElementById('Uplo')
+      const loader = document.getElementById('loader')
+      function getNew(){
+        loader.style.zIndex = 2
+        cont.style.filter = 'blur(4px)'
+        fetch(ApiUrl).then((e) => e.json()).then( (e) => upLoad.innerText = '"'+e.slip.advice +'"').catch((err) => console.log(err))
+        setTimeout(() => {
+          loader.style.zIndex = -1
+          cont.style.filter = 'blur(0px)'
+        },2000)
+      }
+    
+      //fetch(ApiUrl).then((e) => e.json()).then( (e) => upLoad.innerText = '"'+e.slip.advice +'"')
+
+    </script>
+
+</body>
+</html>
